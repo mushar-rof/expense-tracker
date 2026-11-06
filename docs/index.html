@@ -1000,7 +1000,50 @@ function uploadProfilePhoto(input){
  reader.readAsDataURL(file);
 }
 function removeProfilePhoto(){delete state.profile.avatar;save();render();}
-function profileSection(){return `<section class="card"><h2>Profile</h2><p class="muted">${esc(currentUser?.identifier||'Demo account')}</p><div class="avatar-upload">${avatarMarkup()}<div><label for="profilePhoto" class="muted">Upload profile image (JPG, PNG, WebP)</label><input class="inp" type="file" id="profilePhoto" accept="image/*" onchange="uploadProfilePhoto(this)">${state.profile.avatar?'<button class="btn sm outline" onclick="removeProfilePhoto()">Remove photo</button>':''}</div></div><div class="row"><input class="inp grow" id="profileName" value="${esc(state.profile.name||'')}" placeholder="Your name"><button class="btn" onclick="updateProfile(document.getElementById('profileName').value);render()">Save</button></div><p class="muted">Profile photo is stored in your account data and syncs when online.</p></section>`;}
+function profileSection()
+function profileSection(){
+ return `<section class="card">
+
+ <div class="row" style="justify-content:space-between;margin-bottom:16px">
+   <button class="btn outline" onclick="showFeature('home')">
+     ← Back to Home
+   </button>
+   <span class="muted">Account Profile</span>
+ </div>
+
+ <h2>Profile</h2>
+
+ <p class="muted">${esc(currentUser?.identifier||'Demo account')}</p>
+
+ <div class="avatar-upload">
+   ${avatarMarkup()}
+   <div>
+     <label for="profilePhoto" class="muted">
+       Upload profile image (JPG, PNG, WebP)
+     </label>
+     <input class="inp" type="file" id="profilePhoto"
+       accept="image/*" onchange="uploadProfilePhoto(this)">
+     ${state.profile.avatar?
+       '<button class="btn sm outline" onclick="removeProfilePhoto()">Remove photo</button>':''}
+   </div>
+ </div>
+
+ <div class="row">
+   <input class="inp grow" id="profileName"
+     value="${esc(state.profile.name||'')}"
+     placeholder="Your name">
+   <button class="btn"
+     onclick="updateProfile(document.getElementById('profileName').value);render()">
+     Save
+   </button>
+ </div>
+
+ <p class="muted">
+   Profile photo is stored in your account data and syncs when online.
+ </p>
+
+ </section>`;
+}</p><div class="avatar-upload">${avatarMarkup()}<div><label for="profilePhoto" class="muted">Upload profile image (JPG, PNG, WebP)</label><input class="inp" type="file" id="profilePhoto" accept="image/*" onchange="uploadProfilePhoto(this)">${state.profile.avatar?'<button class="btn sm outline" onclick="removeProfilePhoto()">Remove photo</button>':''}</div></div><div class="row"><input class="inp grow" id="profileName" value="${esc(state.profile.name||'')}" placeholder="Your name"><button class="btn" onclick="updateProfile(document.getElementById('profileName').value);render()">Save</button></div><p class="muted">Profile photo is stored in your account data and syncs when online.</p></section>`;}
 let activeFeature='home';
 function showFeature(key){activeFeature=key;featureMenuOpen=false;noticeOpen=key==='notice';render();window.scrollTo({top:0,behavior:'smooth'});}
 /* ---------- Render ---------- */
