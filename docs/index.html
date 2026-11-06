@@ -327,7 +327,28 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #bd9b
 @media(max-width:850px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.primary-actions{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.hero{padding-top:calc(env(safe-area-inset-top,0px) + 13px);padding-bottom:18px}.wrap{padding:0 13px}.topbar{gap:8px;padding-bottom:50px}.brand{min-width:0}.brand h1{font-size:1.3rem}.brand small{font-size:.65rem}.top-actions{width:100%;justify-content:flex-end;gap:5px}.top-actions .icon-btn{font-size:.75rem;padding:8px}.profile{margin-top:8px}.profile input{min-width:0;width:calc(100vw - 125px);font-size:1.4rem}.stats{margin-top:14px!important;gap:9px!important}.stat{padding:13px!important}.primary-actions{margin:14px 0!important;gap:8px}.primary-actions button{padding:13px 6px;font-size:.8rem}.card{padding:14px}.monthnav{margin-top:12px}.mobile-dock{padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}body{padding-bottom:calc(86px + env(safe-area-inset-bottom,0px))}}
 @media(max-width:370px){.brand h1{font-size:1.12rem}.top-actions .icon-btn{font-size:.7rem;padding:7px 6px}.primary-actions button{font-size:.75rem}.stat .val{font-size:1.08rem}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}} 
+/* FIX: Menu should push content down */
+.topbar {
+  flex-wrap: wrap !important;
+  padding-bottom: 0 !important;
+}
+
+.topbar > .menu-wrap {
+  position: relative !important;
+  left: auto !important;
+  bottom: auto !important;
+  order: 3;
+  flex: 0 0 100%;
+  z-index: 60;
+}
+
+.topbar .feature-menu {
+  position: static !important;
+  width: min(300px, 100%);
+  max-height: min(60vh, 420px);
+  margin-top: 8px;
+}
 </style>
 </head>
 <body>
